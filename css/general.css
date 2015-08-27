@@ -1,0 +1,56 @@
+a.addplayer {
+    margin-top: 15px;
+}
+
+.buttonbox {
+    margin: 15px 0 15px 0;
+}
+
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
+}
+
+#score {
+    font-size: 20px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.totalpoints {
+    font-size: 18px;
+}
+
+.edit-t {
+    width:70%
+}
+
+td {
+    vertical-align: middle;
+}
+
+.scoreboard > tbody > tr > td {
+    width: 7%;
+    vertical-align: middle;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .extra-info {
+        display: none;
+    }
+    a.addplayer {
+        margin-top: 0;
+    }
+    .edit-t{
+        width:100%;
+    }
+    .positive, .negative {
+        font-size: 20px;
+    }
+}
+
