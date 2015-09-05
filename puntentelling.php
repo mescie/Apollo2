@@ -2,8 +2,12 @@
 require_once 'db_config.php';
 
 $sql ="SELECT *
-    FROM `punten`
-    ORDER BY naam";
+    FROM punten
+    INNER JOIN users
+    ON punten.uID=users.uID
+    GROUP BY punten.uID, users.uID
+    ORDER BY users.naam";
+
 
 if(!$result = $db->query($sql)){
     die('There was an error running the query [' . $db->error . ']');
