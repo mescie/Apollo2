@@ -19,7 +19,7 @@ $positie        = $_POST['positie'];
 if (isset ($_POST['save']) ) {
 
     // COMMENT gevaarlijk, zie class.users over sql injection
-    $sql = "UPDATE punten
+    $sql = "UPDATE `punten`
             SET gespeeld='$gespeeld', cleansheet='$cleansheet', gescoord='$gescoord', assist='$assist', winst='$winst',
             gelijkspel='$gelijkspel', geel='$geel', rood='$rood', tegengoal='$tegengoal', eigengoal='$eigengoal',
             jasje='$jasje', positie='$positie'

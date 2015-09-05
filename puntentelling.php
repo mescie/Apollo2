@@ -2,11 +2,8 @@
 require_once 'db_config.php';
 
 $sql ="SELECT *
-    FROM punten
-    INNER JOIN users
-    ON punten.uID=users.uID
-    GROUP BY punten.uID, users.uID
-    ORDER BY users.naam";
+    FROM `punten`
+    ORDER BY naam";
 
 if(!$result = $db->query($sql)){
     die('There was an error running the query [' . $db->error . ']');
@@ -16,7 +13,7 @@ if(!$result = $db->query($sql)){
 
 while($row = $result->fetch_assoc()) {
 
-    $id = $row[ 'u.id' ]; //COMMENT $totaal += $id = $row['id']  Zou je hier ook kunnen doen. dat bespaart je die laatste
+    $id = $row[ 'id' ]; //COMMENT $totaal += $id = $row['id']  Zou je hier ook kunnen doen. dat bespaart je die laatste
     $naam = $row[ 'naam' ]; // super lange regel.
     $gespeeld = $row[ 'gespeeld' ];
     $cleansheet = $row[ 'cleansheet' ];
@@ -29,7 +26,7 @@ while($row = $result->fetch_assoc()) {
     $tegengoal = $row[ 'tegengoal' ];
     $eigengoal = $row[ 'eigengoal' ];
     $jasje = $row[ 'jasje' ];
-    $totaal = $row [ 'total' ]
+    $totaal = $gespeeld + $cleansheet + $gescoord + $assist + $winst + $gelijkspel + $geel + $rood + $tegengoal + $eigengoal + $jasje;
     ?>
 
     <tr>

@@ -18,11 +18,13 @@ class users
         // public function getPoints($id){
         $id = $_GET[ 'id' ];
 
-        if(is_numeric($id)) {
-            $sql =  "SELECT *
+
+        // COMMENT gevaarlijk.. nu is mysqli standaard al wel een beetje beveiligd, maar je gooit
+        // zonder enige validatie een door de user te wijzigen parameter in je sql query
+        // Google huiswerk: SQL Injection
+        $sql =  "SELECT *
                 FROM punten
-                WHERE uID = $id";
-        }
+                WHERE id = $id";
 
         if (!$result = $db->query( $sql )) {
             // COMMENT die is niet echt netjes, zie ook puntentelling.php
@@ -47,8 +49,8 @@ class users
 
         if(is_numeric($id)) {
             $sql = "SELECT positie
-                    FROM users
-                    WHERE id = $id";
+                FROM punten
+                WHERE id = $id";
         } else {
             echo 'Error! Het id is geen nummer.';
         }
@@ -72,11 +74,11 @@ class users
     // Huh, deze functie snap ik even niet.. Je wilt een nieuw ID retourneren?
     public function nextPlayer()
     {
-        global $db; //..
+        global $db; // ..
         $id = $_GET[ 'id' ];
 
         $sql = "SELECT COUNT(*)
-                FROM users";
+                FROM punten";
 
         if (!$result = $db->query( $sql )) {
             die( 'There was an error running the query [' . $db->error . ']' );
@@ -106,7 +108,7 @@ class users
 
         // COMMENT: Select * kan, maar het is  opzich wel beter om de velden te specificeren die je nodig hebt.
         $sql = "SELECT *
-                FROM users";
+                FROM punten";
 
         if (!$result = $db->query( $sql )) {
             die( 'There was an error running the query [' . $db->error . ']' );
