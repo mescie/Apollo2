@@ -1,12 +1,23 @@
 <?php
 require_once 'db_config.php';
 
-$sql ="SELECT *
-    FROM punten
-    INNER JOIN users
-    ON punten.uID=users.uID
-    GROUP BY punten.uID, users.uID
-    ORDER BY users.naam";
+$sql ="SELECT naam,
+            SUM(p.gespeeld) as gespeeld,
+			SUM(p.cleansheet) as cleansheet,
+			SUM(p.gescoord) as gescoord,
+			SUM(p.assist) as assist,
+			SUM(p.winst) as winst,
+			SUM(p.gelijkspel) as gelijkspel,
+			SUM(p.geel) as geel,
+			SUM(p.rood) as rood,
+			SUM(p.tegengoal) as tegengoal,
+			SUM(p.eigengoal) as eigengoal,
+			SUM(p.jasje) as jasje,
+			SUM(p.total) as total
+            FROM 		punten p
+            INNER JOIN 	users u ON p.uID = u.uID
+            GROUP BY 	p.uID
+            ORDER BY 	u.naam";
 
 
 if(!$result = $db->query($sql)){
@@ -17,7 +28,7 @@ if(!$result = $db->query($sql)){
 
 while($row = $result->fetch_assoc()) {
 
-    $id = $row[ 'id' ]; //COMMENT $totaal += $id = $row['id']  Zou je hier ook kunnen doen. dat bespaart je die laatste
+    $id = $row[ 'p.uID' ]; //COMMENT $totaal += $id = $row['id']  Zou je hier ook kunnen doen. dat bespaart je die laatste
     $naam = $row[ 'naam' ]; // super lange regel.
     $gespeeld = $row[ 'gespeeld' ];
     $cleansheet = $row[ 'cleansheet' ];
