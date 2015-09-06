@@ -18,7 +18,7 @@
             </thead>
             <?php
             $obj = new users();
-            $obj->getusers();
+            $obj->getWedstrijden();
             ?>
         </table>
     </div>

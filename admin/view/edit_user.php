@@ -1,9 +1,9 @@
 <?php
     $obj = new users();
-    $data = $obj->getpoints();
-    $position = $obj->playerposition();
+    $data = $obj->getPoints();
+    $position = $obj->playerPosition();
     $positionString = implode("", $position);
-    $nextid = $obj->nextplayer();
+    $nextid = $obj->nextPlayer();
 ?>
 
 <div class="container-fluid">

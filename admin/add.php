@@ -7,10 +7,8 @@ $positie        = $_POST['positie'];
 
 if (isset($_POST['save']) && !empty($_POST['naam'])) {
 
-    $sql = <<<SQL
-            INSERT INTO punten (naam, positie)
-            VALUES ('$naam', '$positie')
-SQL;
+    $sql = "INSERT INTO users (naam, positie)
+            VALUES ('$naam', '$positie')";
 
     if (!$result = $db->query( $sql )) {
         die( 'There was an error running the query [' . $db->error . ']' );
