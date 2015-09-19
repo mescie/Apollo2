@@ -28,7 +28,7 @@ if(!$result = $db->query($sql)){
 
 while($row = $result->fetch_assoc()) {
 
-    $id = $row[ 'p.uID' ]; //COMMENT $totaal += $id = $row['id']  Zou je hier ook kunnen doen. dat bespaart je die laatste
+    $id = $row[ 'uID' ]; //COMMENT $totaal += $id = $row['id']  Zou je hier ook kunnen doen. dat bespaart je die laatste
     $naam = $row[ 'naam' ]; // super lange regel.
     $gespeeld = $row[ 'gespeeld' ];
     $cleansheet = $row[ 'cleansheet' ];

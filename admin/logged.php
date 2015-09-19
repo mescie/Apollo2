@@ -39,6 +39,12 @@ function layout($page_id) {
         case 'add_user':
             include( 'view/add_user.php' );
             break;
+        case 'add_wedstrijd':
+            include( 'view/add_wedstrijd.php' );
+            break;
+        case 'add_points':
+            include( 'view/add_points.php' );
+            break;
     }
 }
 
