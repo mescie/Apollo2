@@ -2,8 +2,6 @@
 require('class.users.php');
 $obj = new users();
 $data = $obj->getpoints();
-
-//COMMENT Top!
 ?>
 
 <!DOCTYPE html>
