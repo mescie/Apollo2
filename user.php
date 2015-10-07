@@ -2,6 +2,7 @@
 require('class.users.php');
 $obj = new users();
 $data = $obj->getpoints();
+$games = $obj->aantalWedstrijden($_GET['id']);
 ?>
 
 <!DOCTYPE html>
@@ -20,12 +21,10 @@ $data = $obj->getpoints();
 <body>
 
 <div class="container-fluid">
-    <div class="col-md-12">
+    <div class="col-md-6">
 
         <h2><?php echo $data['naam'] ?></h2>
-
-        <form action="../admin/update.php" method="post">
-            <table class="table table-striped table-bordered edit-t">
+            <table class="table table-striped table-bordered">
                 <tr>
                     <td>Gespeeld</td>
                     <td><?php echo $data['gespeeld'] ?></td>
@@ -51,8 +50,7 @@ $data = $obj->getpoints();
                     <td><?php echo $data['gelijkspel'] ?></td>
                 </tr>
                 <tr>
-                    <td colspan="5"></td> <!-- COMMENT: Waarom een colspan van 5?
-                                                Je hebt maar 2 col's? -->
+                    <td colspan="2"></td>
                 </tr>
                 <tr>
                     <td>Geel</td>
@@ -75,12 +73,23 @@ $data = $obj->getpoints();
                     <td><?php echo $data['jasje'] ?></td>
                 </tr>
             </table>
-        </form>
 
         <button class="btn btn-primary" onclick="goBack()">
             <span class="glyphicon glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Vorige pagina
         </button>
 
+    </div>
+
+    <div class="col-md-6">
+
+        <h2>Statistieken</h2>
+
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <td>Gespeeld</td>
+                    <td><?php echo $games ?></td>
+                </tr>
+            </table>
     </div>
 
 </div>

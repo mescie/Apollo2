@@ -32,8 +32,7 @@ class users
                     SUM(p.rood) as rood,
                     SUM(p.tegengoal) as tegengoal,
                     SUM(p.eigengoal) as eigengoal,
-                    SUM(p.jasje) as jasje,
-                    SUM(p.total) as total
+                    SUM(p.jasje) as jasje
                     FROM 		punten p
                     INNER JOIN 	users u ON p.uID = u.uID
                     WHERE       u.uID = $id";
@@ -263,6 +262,24 @@ class users
         $sql = "SELECT tegenstander
                 FROM wedstrijden
                 WHERE wID = $wid";
+
+        if (!$result = $db->query( $sql )) {
+            die( 'There was an error running the query [' . $db->error . ']' );
+        }
+
+        $datarow = $result->fetch_array();
+
+        return $datarow[0];
+    }
+
+    function aantalWedstrijden($id)
+    {
+
+        global $db;
+
+        $sql = "SELECT COUNT(*)
+                FROM punten
+                WHERE uID = $id";
 
         if (!$result = $db->query( $sql )) {
             die( 'There was an error running the query [' . $db->error . ']' );
