@@ -21,28 +21,53 @@
         <table class="table table-striped table-bordered text-center scoreboard">
             <thead>
                 <tr>
-                    <th>Naam</th>
-                    <th class="extra-info">Gespeeld</th>
-                    <th class="extra-info">Cleansheet</th>
-                    <th class="extra-info">Gescoord</th>
-                    <th class="extra-info">Assist</th>
-                    <th class="extra-info">Winst</th>
-                    <th class="extra-info">Gelijkspel</th>
-                    <th class="extra-info">Geel</th>
-                    <th class="extra-info">Rood</th>
-                    <th class="extra-info">Tegen goal</th>
-                    <th class="extra-info">Eigen goal</th>
-                    <th class="extra-info">Jasje</th>
+                    <th>
+                        Naam
+                    </th>
+                    <th class="extra-info">
+                        Gespeeld
+                    </th>
+                    <th class="extra-info">
+                        Cleansheet
+                    </th>
+                    <th class="extra-info">
+                        Gescoord
+                    </th>
+                    <th class="extra-info">
+                        Assist
+                    </th>
+                    <th class="extra-info">
+                        Winst
+                    </th>
+                    <th class="extra-info">
+                        Gelijkspel
+                    </th>
+                    <th class="extra-info">
+                        Geel
+                    </th>
+                    <th class="extra-info">
+                        Rood
+                    </th>
+                    <th class="extra-info">
+                        Tegen goal
+                    </th>
+                    <th class="extra-info">
+                        Eigen goal
+                    </th>
+                    <th class="extra-info">
+                        Jasje
+                    </th>
                     <th class="extra-info"></th>
-                    <th>Totaal</th>
+                    <th>
+                        Totaal
+                    </th>
                 </tr>
             </thead>
             <?php include('./puntentelling.php'); ?>
         </table>
     </div>
 
-    <!-- COMMENT: Uitgecommente code, altijd weggooien
-    <div class="col-md-12">
+    <div class="col-md-6">
         <h2>Wedstrijden</h2>
         <table class="table table-striped table-bordered text-center">
             <thead>
@@ -51,13 +76,24 @@
                 <th>Tegenstander</th>
                 <th>Score</th>
                 <th>Datum</th>
-                <th>Soort</th>
             </tr>
             </thead>
-            < ?php include('./wedstrijden.php'); ?>
+            <?php include('./wedstrijden.php'); ?>
         </table>
     </div>
-    -->
+
+    <!-- <div class="col-md-6">
+        <h2>Meest gespeeld</h2>
+        <table class="table table-striped table-bordered text-center">
+            <thead>
+            <tr>
+                <th>Aantal wedstrijden</th>
+                <th>Speler</th>
+            </tr>
+            </thead>
+
+        </table>
+    </div> -->
 
 </div>
 

@@ -4,7 +4,7 @@ session_start();
 
 // Gebruikersnaam en wachtwoord instellen
 // COMMENT: huiswerk: password_hash (php.net)
-$sGebruikerControle = 'apollo';
+$sGebruikerControle = 'kevin';
 $sWachtwoordControle = 'kampioenen';
 
 // Controle of het formulier verzonden is 
