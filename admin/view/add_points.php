@@ -8,9 +8,8 @@ $naam = $obj->getNaam();
 $tegenstander = $obj->getWedstrijd();
 ?>
 
-<div class="container-fluid">
+<div class="container">
     <div class="col-md-12">
-        <h1>Admin</h1>
 
         <a href="../admin/logged.php" name="next" type="submit" class="btn-primary btn pull-right">
             <span class="glyphicon glyphicon glyphicon glyphicon-list" aria-hidden="true"></span> Users
@@ -23,7 +22,7 @@ $tegenstander = $obj->getWedstrijd();
             <input type="hidden" class="form-control" name="uID" value="<?php echo $_GET['id'] ?>"/>
             <input type="hidden" class="form-control" name="wID" value="<?php echo $_GET['wid'] ?>"/>
 
-            <table class="table table-striped table-bordered edit-t">
+            <table class="table table-striped table-bordered">
                 <tr>
                     <td>Positie</td>
                     <td colspan="4">

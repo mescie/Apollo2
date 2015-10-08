@@ -19,6 +19,14 @@ require('../class.users.php');
 </head>
 <body>
 
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <a href="./logged.php">
+            <h2>Scoreboard <small>Admin</small></h2>
+        </a>
+    </div>
+</nav>
+
 <?php
 if (isset($_GET['page'])) {
     $page_id = $_GET['page']; //Get the request URL

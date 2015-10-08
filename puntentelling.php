@@ -60,7 +60,6 @@ while($row = $result->fetch_assoc()) {
         <td class="extra-info"><?php echo $tegengoal ?></td>
         <td class="extra-info"><?php echo $eigengoal ?></td>
         <td class="extra-info"><?php echo $jasje ?></td>
-        <td class="extra-info"></td>
         <td class="totalpoints"><?php echo $totaal ?></td>
     </tr>
 

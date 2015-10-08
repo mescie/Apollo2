@@ -5,9 +5,8 @@
     $naam = $obj->getNaam();
 ?>
 
-<div class="container-fluid">
+<div class="container">
     <div class="col-md-12">
-        <h1>Admin</h1>
 
         <a href="../admin/logged.php" name="next" type="submit" class="btn-primary btn pull-right">
             <span class="glyphicon glyphicon glyphicon glyphicon-list" aria-hidden="true"></span> Users
@@ -16,13 +15,13 @@
         <h2>Edit user - <?php echo $naam ?></h2>
 
         <form action="../admin/update.php" method="post">
-            <table class="table table-striped table-bordered edit-t">
+            <table class="table table-striped table-bordered">
 
                 <tr>
                     <td>Naam</td>
                     <td colspan="4">
-                        <?php echo $naam ?>
-                        <input type="hidden" class="form-control" name="uID" value="<?php echo $data['uID'] ?>"/>
+                        <input type="text" class="form-control" name="naam" value="<?php echo $naam ?>"/>
+                        <input type="hidden" class="form-control" name="uID" value="<?php echo $_GET['id'] ?>"/>
                     </td>
                 </tr>
                 <tr>

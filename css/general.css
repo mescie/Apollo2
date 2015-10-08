@@ -1,3 +1,16 @@
+body {
+    padding-top: 60px;
+    background-color: #efefef;
+}
+
+.container {
+    background-color: #FFFFFF;
+}
+
+.clear {
+    clear: both;
+}
+
 a.addplayer {
     margin-top: 15px;
 }
@@ -26,10 +39,6 @@ a.addplayer {
     font-size: 18px;
 }
 
-.edit-t {
-    width:70%
-}
-
 td {
     vertical-align: middle;
 }
@@ -37,6 +46,19 @@ td {
 .scoreboard > tbody > tr > td {
     width: 7%;
     vertical-align: middle;
+}
+
+.navbar-default {
+    background-color: #204D74;
+    color: #ffffff;
+}
+
+h2 small.white {
+    color: #FFFFFF;
+}
+
+.extra-info {
+    text-align: center;
 }
 
 @media only screen and (max-device-width: 480px) {
@@ -51,6 +73,12 @@ td {
     }
     .positive, .negative {
         font-size: 20px;
+    }
+}
+
+@media only screen and (max-device-width: 450px) {
+    .navbar-default h4 {
+        display: none;
     }
 }
 
