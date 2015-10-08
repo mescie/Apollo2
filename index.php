@@ -2,20 +2,20 @@
 
 <div class="container">
     <div class="col-md-12">
-        <table class="table table-striped text-center scoreboard">
+        <table class="table table-striped text-center scoreboard tablesorter" id="table">
             <thead>
                 <tr>
                     <th>
                         Naam
                     </th>
                     <th class="extra-info">
-                        Gespeeld
+                        Gespee.
                     </th>
                     <th class="extra-info">
-                        Cleansheet
+                        Cleans.
                     </th>
                     <th class="extra-info">
-                        Gescoord
+                        Goals
                     </th>
                     <th class="extra-info">
                         Assist
@@ -24,7 +24,7 @@
                         Winst
                     </th>
                     <th class="extra-info">
-                        Gelijkspel
+                        Gelijk
                     </th>
                     <th class="extra-info">
                         Geel
@@ -33,10 +33,10 @@
                         Rood
                     </th>
                     <th class="extra-info">
-                        Tegen goal
+                        T. goal
                     </th>
                     <th class="extra-info">
-                        Eigen goal
+                        E. goal
                     </th>
                     <th class="extra-info">
                         Jasje
@@ -46,7 +46,9 @@
                     </th>
                 </tr>
             </thead>
-            <?php include('./puntentelling.php'); ?>
+            <tbody>
+                <?php include('./puntentelling.php'); ?>
+            </tbody>
         </table>
     </div>
 
@@ -87,7 +89,20 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/scoreboard.js"></script>
 
-<script src="js/light-table-sorter.min.js"></script>
-<script> LightTableSorter.init() </script>
+<script type="text/javascript" src="js/jquery.tablesorter.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function()
+        {
+            $("#table").tablesorter();
+        }
+    );
+
+    $(document).ready(function() {
+        $("table").tablesorter({
+            sortList: [[12,1]]
+        });
+    });
+</script>
 </body>
 </html>

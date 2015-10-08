@@ -61,6 +61,21 @@ h2 small.white {
     text-align: center;
 }
 
+table.tablesorter thead tr th.headerSortUp:after,
+table.tablesorter thead tr th.headerSortDown:after,
+table.tablesorter thead tr th.header:after {
+    font-family: FontAwesome;
+}
+table.tablesorter thead tr th.header:after {
+    content: "\f0dc";
+}
+table.tablesorter thead tr th.headerSortUp:after {
+    content: "\f0de";
+}
+table.tablesorter thead tr th.headerSortDown:after {
+    content: "\f0dd";
+}
+
 @media only screen and (max-device-width: 480px) {
     .extra-info {
         display: none;
@@ -79,6 +94,10 @@ h2 small.white {
 @media only screen and (max-device-width: 450px) {
     .navbar-default h4 {
         display: none;
+    }
+
+    .navbar-default h2 {
+        font-size: 24px;
     }
 }
 

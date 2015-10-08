@@ -7,7 +7,7 @@ $games = $obj->aantalWedstrijden($_GET['id']);
 include('./header.php');
 ?>
 
-<div class="container-fluid">
+<div class="container">
     <div class="col-md-6">
 
         <h2><?php echo $data['naam'] ?> <small>Totaal punten</small></h2>
