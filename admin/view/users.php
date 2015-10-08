@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
     <div class="col-md-12">
         <a href="../admin/logged.php?page=add_wedstrijd" class="btn btn-primary pull-right addplayer">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Wedstrijd toevoegen

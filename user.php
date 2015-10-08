@@ -1,29 +1,16 @@
 <?php
 require('class.users.php');
 $obj = new users();
-$data = $obj->getpoints();
+$data = $obj->getpoints($_GET[ 'id' ]);
 $games = $obj->aantalWedstrijden($_GET['id']);
+
+include('./header.php');
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>SV Apollo '69 2 - 2015/2016 Scoreboard</title>
-
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/general.css" rel="stylesheet">
-</head>
-<body>
 
 <div class="container-fluid">
     <div class="col-md-6">
 
-        <h2><?php echo $data['naam'] ?></h2>
+        <h2><?php echo $data['naam'] ?> <small>Totaal punten</small></h2>
             <table class="table table-striped table-bordered">
                 <tr>
                     <td>Gespeeld</td>
@@ -86,7 +73,7 @@ $games = $obj->aantalWedstrijden($_GET['id']);
 
             <table class="table table-striped table-bordered">
                 <tr>
-                    <td>Gespeeld</td>
+                    <td>Aantal wedstrijden gespeeld</td>
                     <td><?php echo $games ?></td>
                 </tr>
             </table>

@@ -7,16 +7,12 @@ class users
 
     public $data = '';
 
-    public function getPoints()
+    public function getPoints($id)
     {
 
         // COMMENT Het gebruik van een global binnen een klasse is niet echt netjes, beter: maak een constructor waar je
         // een private field $_db maakt.
         global $db;
-
-        // COMMENT beter is om dit ID in een functieparameter te plaatsen
-        // public function getPoints($id){
-        $id = $_GET[ 'id' ];
 
             // COMMENT gevaarlijk.. nu is mysqli standaard al wel een beetje beveiligd, maar je gooit
             // zonder enige validatie een door de user te wijzigen parameter in je sql query
