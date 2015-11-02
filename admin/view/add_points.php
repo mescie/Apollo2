@@ -1,11 +1,11 @@
 <?php
 $obj = new users();
-$data = $obj->getPointsByGame();
-$nextid = $obj->nextPlayer();
-$position = $obj->playerPosition();
+$data = $obj->getPointsByGame($_GET[ 'id' ], $_GET[ 'wid' ]);
+$nextid = $obj->nextPlayer($_GET[ 'id' ]);
+$position = $obj->playerPosition($_GET[ 'id' ]);
 $positionString = implode("", $position);
-$naam = $obj->getNaam();
-$tegenstander = $obj->getWedstrijd();
+$naam = $obj->getNaam($_GET[ 'id' ]);
+$tegenstander = $obj->getWedstrijd($_GET[ 'wid' ]);
 ?>
 
 <div class="container">

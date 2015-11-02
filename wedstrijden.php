@@ -2,7 +2,7 @@
 require_once 'db_config.php';
 
 $sql ="SELECT *
-        FROM wedstrijden";
+        FROM sb_wedstrijden";
 
 if(!$result = $db->query($sql)){
     die('There was an error running the query [' . $db->error . ']');
@@ -16,8 +16,8 @@ while($row = $result->fetch_assoc()) {
 ?>
 
     <tr>
-        <td>Apollo 2</td>
-        <td><?php echo $tegenstander ?></td>
+        <td class="text-left">Apollo 2</td>
+        <td class="text-left"><?php echo $tegenstander ?></td>
         <td><?php echo $stand?></td>
         <td><?php echo $datum ?></td>
     </tr>

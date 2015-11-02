@@ -11,10 +11,10 @@
             <thead>
             <tr>
                 <th>id</th>
-                <th>Datum</th>
+                <th class="extra-info">Datum</th>
                 <th></th>
-                <th class="extra-info">Tegenstander</th>
-                <th>Eindstand</th>
+                <th>Tegenstander</th>
+                <th class="extra-info">Eindstand</th>
                 <th>Bewerken</th>
             </tr>
             </thead>

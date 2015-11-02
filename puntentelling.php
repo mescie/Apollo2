@@ -13,8 +13,8 @@ $sql ="SELECT naam, p.uID as uID,
 			SUM(p.tegengoal) as tegengoal,
 			SUM(p.eigengoal) as eigengoal,
 			SUM(p.jasje) as jasje
-            FROM 		punten p
-            INNER JOIN 	users u ON p.uID = u.uID
+            FROM 		sb_punten p
+            INNER JOIN 	sb_users u ON p.uID = u.uID
             GROUP BY 	p.uID
             ORDER BY 	u.naam";
 

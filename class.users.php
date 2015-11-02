@@ -29,8 +29,8 @@ class users
                     SUM(p.tegengoal) as tegengoal,
                     SUM(p.eigengoal) as eigengoal,
                     SUM(p.jasje) as jasje
-                    FROM 		punten p
-                    INNER JOIN 	users u ON p.uID = u.uID
+                    FROM 		sb_punten p
+                    INNER JOIN 	sb_users u ON p.uID = u.uID
                     WHERE       u.uID = $id";
 
             if (!$result = $db->query( $sql )) {
@@ -45,23 +45,18 @@ class users
         return $data;
     }
 
-    public function getPointsByGame()
+    public function getPointsByGame($id, $wid)
     {
 
         // COMMENT Het gebruik van een global binnen een klasse is niet echt netjes, beter: maak een constructor waar je
         // een private field $_db maakt.
         global $db;
 
-        // COMMENT beter is om dit ID in een functieparameter te plaatsen
-        // public function getPoints($id){
-        $id = $_GET[ 'id' ];
-        $wid = $_GET[ 'wid' ];
-
         // COMMENT gevaarlijk.. nu is mysqli standaard al wel een beetje beveiligd, maar je gooit
         // zonder enige validatie een door de user te wijzigen parameter in je sql query
         // Google huiswerk: SQL Injection
         $sql = "SELECT *
-                FROM punten
+                FROM sb_punten
                 WHERE uID = $id
                 AND wID = $wid";
 
@@ -95,15 +90,13 @@ class users
         return $data;
     }
 
-    public function getNaam()
+    public function getNaam($id)
     {
         global $db;
 
-        $id = $_GET[ 'id' ];
-
         if(is_numeric($id)) {
             $sql = "SELECT  naam
-                    FROM    users
+                    FROM    sb_users
                     WHERE   uID = $id";
         } else {
             echo 'Error! Het id is geen nummer.';
@@ -119,15 +112,14 @@ class users
 
     }
 
-    public function playerPosition()
+    public function playerPosition($id)
     {
         // hier pak je weer de global; daarom in een constructor een private field $_db maken.
         global $db;
-        $id = $_GET[ 'id' ];
 
         if(is_numeric($id)) {
             $sql = "SELECT positie
-                    FROM users
+                    FROM sb_users
                     WHERE uID = $id";
         } else {
             echo 'Error! Het id is geen nummer.';
@@ -150,13 +142,12 @@ class users
     }
 
     // Huh, deze functie snap ik even niet.. Je wilt een nieuw ID retourneren?
-    public function nextPlayer()
+    public function nextPlayer($id)
     {
-        global $db; // ..
-        $id = $_GET[ 'id' ];
+        global $db;
 
         $sql = "SELECT COUNT(*)
-                FROM users";
+                FROM sb_users";
 
         if (!$result = $db->query( $sql )) {
             die( 'There was an error running the query [' . $db->error . ']' );
@@ -185,7 +176,7 @@ class users
         global $db;
 
         $sql = "SELECT *
-                FROM users";
+                FROM sb_users";
 
         if (!$result = $db->query( $sql )) {
             die( 'There was an error running the query [' . $db->error . ']' );
@@ -224,7 +215,7 @@ class users
         global $db;
 
         $sql = "SELECT *
-                FROM wedstrijden";
+                FROM sb_wedstrijden";
 
         if (!$result = $db->query( $sql )) {
             die( 'There was an error running the query [' . $db->error . ']' );
@@ -241,22 +232,20 @@ class users
             echo '<td>' . $wid . '</td>';
             echo '<td class="text-left extra-info">' . $datum . '</td>';
             echo '<td class="text-left">Apollo 2</td>';
-            echo '<td class="text-left extra-info">' . $tegenstander . '</td>';
+            echo '<td class="text-left">' . $tegenstander . '</td>';
             echo '<td class="text-left extra-info">' . $eindstand . '</td>';
             echo '<td><a href="logged.php?page=add_points&wid=' . $wid . '&id=1"> Punten toevoegen </a></td>';
             echo '</tr>';
             }
         }
 
-    function getWedstrijd()
+    function getWedstrijd($wid)
     {
 
         global $db;
 
-        $wid = $_GET[ 'wid' ];
-
         $sql = "SELECT tegenstander
-                FROM wedstrijden
+                FROM sb_wedstrijden
                 WHERE wID = $wid";
 
         if (!$result = $db->query( $sql )) {
@@ -274,7 +263,25 @@ class users
         global $db;
 
         $sql = "SELECT COUNT(*)
-                FROM punten
+                FROM sb_punten
+                WHERE uID = $id";
+
+        if (!$result = $db->query( $sql )) {
+            die( 'There was an error running the query [' . $db->error . ']' );
+        }
+
+        $datarow = $result->fetch_array();
+
+        return $datarow[0];
+    }
+
+    function getGoals($id)
+    {
+
+        global $db;
+
+        $sql = "SELECT doelpunten
+                FROM sb_topscoorders
                 WHERE uID = $id";
 
         if (!$result = $db->query( $sql )) {
