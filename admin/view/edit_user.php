@@ -1,8 +1,9 @@
 <?php
     $obj = new users();
-    $position = $obj->playerPosition();
+    $position = $obj->playerPosition($_GET['id']);
     $positionString = implode("", $position);
-    $naam = $obj->getNaam();
+    $naam = $obj->getNaam($_GET['id']);
+    $goals = $obj->getGoals($_GET['id']);
 ?>
 
 <div class="container">
@@ -33,6 +34,12 @@
                             <option value="2" <?php if ($positionString == 2) echo "selected";?>>Middenvelder</option>
                             <option value="3" <?php if ($positionString == 3) echo "selected";?>>Aanvaller</option>
                         </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Goals</td>
+                    <td colspan="4">
+                        <input type="text" class="form-control" name="doelpunten" value="<?php echo $goals ?>"/>
                     </td>
                 </tr>
             </table>

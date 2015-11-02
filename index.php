@@ -68,15 +68,15 @@
     </div>
 
     <div class="col-md-6">
-        <h2>Meest gespeeld</h2>
+        <h2>Topscoorders</h2>
         <table class="table table-striped text-center">
             <thead>
             <tr>
-                <th>Aantal wedstrijden</th>
                 <th>Speler</th>
+                <th>Doelpunten</th>
             </tr>
             </thead>
-
+            <?php include('./topscoorders.php'); ?>
         </table>
     </div>
 
@@ -92,12 +92,6 @@
 <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function()
-        {
-            $("#table").tablesorter();
-        }
-    );
-
     $(document).ready(function() {
         $("table").tablesorter({
             sortList: [[12,1]]

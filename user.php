@@ -3,6 +3,7 @@ require('class.users.php');
 $obj = new users();
 $data = $obj->getpoints($_GET[ 'id' ]);
 $games = $obj->aantalWedstrijden($_GET['id']);
+$goals = $obj->getGoals($_GET['id']);
 
 include('./header.php');
 ?>
@@ -75,6 +76,10 @@ include('./header.php');
                 <tr>
                     <td>Aantal wedstrijden gespeeld</td>
                     <td><?php echo $games ?></td>
+                </tr>
+                <tr>
+                    <td>Aantal doelpunten</td>
+                    <td><?php echo $goals ?></td>
                 </tr>
             </table>
     </div>
