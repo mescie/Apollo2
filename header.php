@@ -16,7 +16,12 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <h2 class="pull-left">SV Apollo '69 - Twidde</h2>
-        <h4 class="pull-right">2015/2016 Scoreboard</h4>
+        <div class="header-block">
+            <a href="./index.php"><h2 class="pull-left">SV Apollo '69 - Twidde</h2></a>
+        </div>
+        <div class="header-block text-right">
+            <h4>2015/2016 Scoreboard</h4>
+            <a href="./uitleg.php">Uitleg</a>
+        </div>
     </div>
 </nav>
