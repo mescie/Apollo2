@@ -9,7 +9,7 @@ $eindstand              = $_POST['doelpunt_voor'] . "-" . $_POST['doelpunt_tegen
 
 if (isset($_POST['save']) && !empty($_POST['tegenstander'])) {
 
-    $sql = "INSERT INTO wedstrijden (tegenstander, datum, winst, stand)
+    $sql = "INSERT INTO sb_wedstrijden (tegenstander, datum, winst, stand)
             VALUES ('$tegenstander', '$datum', '$winst', '$eindstand')";
 
     if (!$result = $db->query( $sql )) {
