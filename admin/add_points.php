@@ -19,7 +19,7 @@ $jasje          = $_POST['jasje'];
 if (isset ($_POST['save']) ) {
 
     $sql = "SELECT 'wID', 'uID'
-            FROM punten
+            FROM sb_punten
             WHERE wID = '$wid'
             AND uID = '$id'";
 
@@ -28,7 +28,7 @@ if (isset ($_POST['save']) ) {
     if ($result->num_rows < 1) {
 
         // COMMENT gevaarlijk, zie class.users over sql injection
-        $sql = "INSERT INTO punten (gespeeld, cleansheet, gescoord, assist, winst, gelijkspel, geel, rood, tegengoal, eigengoal, jasje, uID, wID)
+        $sql = "INSERT INTO sb_punten (gespeeld, cleansheet, gescoord, assist, winst, gelijkspel, geel, rood, tegengoal, eigengoal, jasje, uID, wID)
                 VALUES ('$gespeeld', '$cleansheet', '$gescoord', '$assist', '$winst', '$gelijkspel', '$geel', '$rood', '$tegengoal', '$eigengoal', '$jasje', '$id', '$wid')";
 
         if (!$result = $db->query( $sql )) {
@@ -37,7 +37,7 @@ if (isset ($_POST['save']) ) {
 
         } else {
 
-            $sql = "UPDATE punten
+            $sql = "UPDATE sb_punten
             SET gespeeld        ='$gespeeld',
             cleansheet          ='$cleansheet',
             gescoord            ='$gescoord',

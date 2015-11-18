@@ -5,40 +5,40 @@
         <table class="table table-striped text-center scoreboard tablesorter" id="table">
             <thead>
                 <tr>
-                    <th>
+                    <th class="pointer">
                         Naam
                     </th>
-                    <th class="extra-info">
+                    <th class="extra-info pointer">
                         Gespee.
                     </th>
-                    <th class="extra-info">
+                    <th class="extra-info pointer">
                         Cleans.
                     </th>
-                    <th class="extra-info">
+                    <th class="extra-info pointer">
                         Goals
                     </th>
-                    <th class="extra-info">
+                    <th class="extra-info pointer">
                         Assist
                     </th>
-                    <th class="extra-info">
+                    <th class="extra-info pointer">
                         Winst
                     </th>
-                    <th class="extra-info">
+                    <th class="extra-info pointer">
                         Gelijk
                     </th>
-                    <th class="extra-info">
+                    <th class="extra-info pointer">
                         Geel
                     </th>
-                    <th class="extra-info">
+                    <th class="extra-info pointer">
                         Rood
                     </th>
-                    <th class="extra-info">
+                    <th class="extra-info pointer">
                         T. goal
                     </th>
-                    <th class="extra-info">
+                    <th class="extra-info pointer">
                         E. goal
                     </th>
-                    <th class="extra-info">
+                    <th class="extra-info pointer">
                         Jasje
                     </th>
                     <th>
@@ -82,6 +82,8 @@
 
 </div>
 
+<?php include('./footer.php'); ?>
+
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -90,6 +92,7 @@
 <script src="js/scoreboard.js"></script>
 
 <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
+<script type="text/javascript" src="js/jquery.countdown.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -97,6 +100,25 @@
             sortList: [[12,1]]
         });
     });
+
+    var arrayDates = [];
+    var time = new Date();
+
+    arrayDates.push(new Date('November 21, 2015 13:00:00'));
+    arrayDates.push(new Date('November 28, 2015 15:00:00'));
+    arrayDates.push(new Date('December 5, 2015 14:30:00'));
+
+    for(i = 0; i < arrayDates.length; i++){
+        if(arrayDates[i] >= time) {
+            var nextMatch = arrayDates[i];
+            break;
+        }
+    }
+
+     $('#countdown').countdown(nextMatch, function(event) {
+           var totalHours = event.offset.totalDays * 24 + event.offset.hours;
+           $(this).html(event.strftime(totalHours + ' uur %M min %S sec'));
+         });
 </script>
 </body>
 </html>
