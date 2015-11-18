@@ -14,10 +14,8 @@ class users
         // een private field $_db maakt.
         global $db;
 
-            // COMMENT gevaarlijk.. nu is mysqli standaard al wel een beetje beveiligd, maar je gooit
-            // zonder enige validatie een door de user te wijzigen parameter in je sql query
-            // Google huiswerk: SQL Injection
-            $sql = "SELECT naam,
+            if (is_numeric($id)) {
+                $sql = "SELECT naam,
                     SUM(p.gespeeld) as gespeeld,
                     SUM(p.cleansheet) as cleansheet,
                     SUM(p.gescoord) as gescoord,
@@ -32,6 +30,8 @@ class users
                     FROM 		sb_punten p
                     INNER JOIN 	sb_users u ON p.uID = u.uID
                     WHERE       u.uID = $id";
+            }
+
 
             if (!$result = $db->query( $sql )) {
                 // COMMENT die is niet echt netjes, zie ook puntentelling.php
