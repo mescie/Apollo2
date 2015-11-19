@@ -30,16 +30,15 @@ class users
                     FROM 		sb_punten p
                     INNER JOIN 	sb_users u ON p.uID = u.uID
                     WHERE       u.uID = $id";
-            }
 
+                if (!$result = $db->query( $sql )) {
+                    // COMMENT die is niet echt netjes, zie ook puntentelling.php
+                    die( 'There was an error running the query [' . $db->error . ']' );
+                }
 
-            if (!$result = $db->query( $sql )) {
-                // COMMENT die is niet echt netjes, zie ook puntentelling.php
-                die( 'There was an error running the query [' . $db->error . ']' );
-            }
-
-            while ($row = $result->fetch_assoc()) {
-                $data = $row;
+                while ($row = $result->fetch_assoc()) {
+                    $data = $row;
+                }
             }
 
         return $data;
@@ -52,37 +51,36 @@ class users
         // een private field $_db maakt.
         global $db;
 
-        // COMMENT gevaarlijk.. nu is mysqli standaard al wel een beetje beveiligd, maar je gooit
-        // zonder enige validatie een door de user te wijzigen parameter in je sql query
-        // Google huiswerk: SQL Injection
-        $sql = "SELECT *
+        if(is_numeric($id) && (is_numeric($wid))) {
+            $sql = "SELECT *
                 FROM sb_punten
                 WHERE uID = $id
                 AND wID = $wid";
 
-        if (!$result = $db->query( $sql )) {
-            // COMMENT die is niet echt netjes, zie ook puntentelling.php
-            die( 'There was an error running the query [' . $db->error . ']' );
-        }
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $data = $row;
+            if (!$result = $db->query( $sql )) {
+                // COMMENT die is niet echt netjes, zie ook puntentelling.php
+                die( 'There was an error running the query [' . $db->error . ']' );
             }
-        } else {
-            $data = [
-                "gespeeld" => 0,
-                "cleansheet" => 0,
-                "gescoord" => 0,
-                "assist" => 0,
-                "winst" => 0,
-                "gelijkspel" => 0,
-                "geel" => 0,
-                "rood" => 0,
-                "tegengoal" => 0,
-                "eigengoal" => 0,
-                "jasje" => 0
-            ];
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $data = $row;
+                }
+            } else {
+                $data = [
+                    "gespeeld" => 0,
+                    "cleansheet" => 0,
+                    "gescoord" => 0,
+                    "assist" => 0,
+                    "winst" => 0,
+                    "gelijkspel" => 0,
+                    "geel" => 0,
+                    "rood" => 0,
+                    "tegengoal" => 0,
+                    "eigengoal" => 0,
+                    "jasje" => 0
+                ];
+            }
         }
 
 
@@ -146,25 +144,27 @@ class users
     {
         global $db;
 
-        $sql = "SELECT COUNT(*)
+        if(is_numeric($id)){
+            $sql = "SELECT COUNT(*)
                 FROM sb_users";
 
-        if (!$result = $db->query( $sql )) {
-            die( 'There was an error running the query [' . $db->error . ']' );
-        }
+            if (!$result = $db->query( $sql )) {
+                die( 'There was an error running the query [' . $db->error . ']' );
+            }
 
-        while ($row = $result->fetch_assoc()) {
+            while ($row = $result->fetch_assoc()) {
 
-            $rows = $row;
+                $rows = $row;
 
-        }
+            }
 
-        $result = implode("", $rows);
+            $result = implode("", $rows);
 
-        if ($result > $id) {
-            $id++;
-        } else {
-            $id = '1';
+            if ($result > $id) {
+                $id++;
+            } else {
+                $id = '1';
+            }
         }
 
         return $id;
@@ -244,15 +244,17 @@ class users
 
         global $db;
 
-        $sql = "SELECT tegenstander
+        if(is_numeric($wid)) {
+            $sql = "SELECT tegenstander
                 FROM sb_wedstrijden
                 WHERE wID = $wid";
 
-        if (!$result = $db->query( $sql )) {
-            die( 'There was an error running the query [' . $db->error . ']' );
-        }
+            if (!$result = $db->query( $sql )) {
+                die( 'There was an error running the query [' . $db->error . ']' );
+            }
 
-        $datarow = $result->fetch_array();
+            $datarow = $result->fetch_array();
+        }
 
         return $datarow[0];
     }
@@ -262,33 +264,36 @@ class users
 
         global $db;
 
-        $sql = "SELECT COUNT(*)
+        if(is_numeric($id)){
+            $sql = "SELECT COUNT(*)
                 FROM sb_punten
                 WHERE uID = $id";
 
-        if (!$result = $db->query( $sql )) {
-            die( 'There was an error running the query [' . $db->error . ']' );
-        }
+            if (!$result = $db->query( $sql )) {
+                die( 'There was an error running the query [' . $db->error . ']' );
+            }
 
-        $datarow = $result->fetch_array();
+            $datarow = $result->fetch_array();
+        }
 
         return $datarow[0];
     }
 
     function getGoals($id)
     {
-
         global $db;
 
-        $sql = "SELECT doelpunten
+        if(is_numeric($id)){
+            $sql = "SELECT doelpunten
                 FROM sb_topscoorders
                 WHERE uID = $id";
 
-        if (!$result = $db->query( $sql )) {
-            die( 'There was an error running the query [' . $db->error . ']' );
-        }
+            if (!$result = $db->query( $sql )) {
+                die( 'There was an error running the query [' . $db->error . ']' );
+            }
 
-        $datarow = $result->fetch_array();
+            $datarow = $result->fetch_array();
+        }
 
         return $datarow[0];
     }

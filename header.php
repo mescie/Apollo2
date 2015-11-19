@@ -20,10 +20,10 @@
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-        <div class="col-md-6">
-            <a href="./index.php"><h2 class="pull-left">SV Apollo '69 - Twidde</h2></a>
+        <div class="col-md-6 col-xs-12 header-title">
+            <a href="./index.php"><h2>SV Apollo '69 - Twidde</h2></a>
         </div>
-        <div class="col-md-6 text-right">
+        <div class="col-md-6 col-xs-12 text-right">
             <div class="counter">
                 <span id="countdown"></span>
             </div>

@@ -60,7 +60,7 @@
                 <th>Apollo</th>
                 <th>Tegenstander</th>
                 <th>Score</th>
-                <th>Datum</th>
+                <th class="extra-info">Datum</th>
             </tr>
             </thead>
             <?php include('./wedstrijden.php'); ?>

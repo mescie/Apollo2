@@ -19,7 +19,7 @@ while($row = $result->fetch_assoc()) {
         <td class="text-left">Apollo 2</td>
         <td class="text-left"><?php echo $tegenstander ?></td>
         <td><?php echo $stand?></td>
-        <td><?php echo $datum ?></td>
+        <td class="extra-info"><?php echo $datum ?></td>
     </tr>
 
 <?php
