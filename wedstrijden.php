@@ -2,7 +2,9 @@
 require_once 'db_config.php';
 
 $sql ="SELECT *
-        FROM sb_wedstrijden";
+        FROM sb_wedstrijden
+        ORDER BY datum DESC
+        LIMIT 10";
 
 if(!$result = $db->query($sql)){
     die('There was an error running the query [' . $db->error . ']');

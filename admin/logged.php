@@ -19,7 +19,7 @@ require('../class.users.php');
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default">
     <div class="container">
         <a href="./logged.php">
             <h2>Scoreboard <small>Admin</small></h2>

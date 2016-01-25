@@ -10,9 +10,10 @@ class users
     public function getPoints($id)
     {
 
+        global $db;
+
         // COMMENT Het gebruik van een global binnen een klasse is niet echt netjes, beter: maak een constructor waar je
         // een private field $_db maakt.
-        global $db;
 
             if (is_numeric($id)) {
                 $sql = "SELECT naam,
@@ -44,48 +45,49 @@ class users
         return $data;
     }
 
-    public function getPointsByGame($id, $wid)
+    public function getTotalPoints($id)
     {
 
-        // COMMENT Het gebruik van een global binnen een klasse is niet echt netjes, beter: maak een constructor waar je
-        // een private field $_db maakt.
         global $db;
 
-        if(is_numeric($id) && (is_numeric($wid))) {
-            $sql = "SELECT *
-                FROM sb_punten
-                WHERE uID = $id
-                AND wID = $wid";
+        if (is_numeric($id)) {
+            $sql = "SELECT naam,
+                    SUM(p.gespeeld) as gespeeld,
+                    SUM(p.cleansheet) as cleansheet,
+                    SUM(p.gescoord) as gescoord,
+                    SUM(p.assist) as assist,
+                    SUM(p.winst) as winst,
+                    SUM(p.gelijkspel) as gelijkspel,
+                    SUM(p.geel) as geel,
+                    SUM(p.rood) as rood,
+                    SUM(p.tegengoal) as tegengoal,
+                    SUM(p.eigengoal) as eigengoal,
+                    SUM(p.jasje) as jasje
+                    FROM 		sb_punten p
+                    INNER JOIN 	sb_users u ON p.uID = u.uID
+                    WHERE       u.uID = $id";
 
             if (!$result = $db->query( $sql )) {
                 // COMMENT die is niet echt netjes, zie ook puntentelling.php
                 die( 'There was an error running the query [' . $db->error . ']' );
             }
 
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $data = $row;
-                }
-            } else {
-                $data = [
-                    "gespeeld" => 0,
-                    "cleansheet" => 0,
-                    "gescoord" => 0,
-                    "assist" => 0,
-                    "winst" => 0,
-                    "gelijkspel" => 0,
-                    "geel" => 0,
-                    "rood" => 0,
-                    "tegengoal" => 0,
-                    "eigengoal" => 0,
-                    "jasje" => 0
-                ];
+            while ($row = $result->fetch_assoc()) {
+                $totaal = $gespeeld = $row[ 'gespeeld' ];
+                $totaal += $cleansheet = $row[ 'cleansheet' ];
+                $totaal += $gescoord = $row[ 'gescoord' ];
+                $totaal += $assist = $row[ 'assist' ];
+                $totaal += $winst = $row[ 'winst' ];
+                $totaal += $gelijkspel = $row[ 'gelijkspel' ];
+                $totaal += $geel = $row[ 'geel' ];
+                $totaal += $rood = $row[ 'rood' ];
+                $totaal += $tegengoal = $row[ 'tegengoal' ];
+                $totaal += $eigengoal = $row[ 'eigengoal' ];
+                $totaal += $jasje = $row[ 'jasje' ];
             }
         }
 
-
-
-        return $data;
+        return $totaal;
     }
 
     public function getNaam($id)
@@ -201,9 +203,8 @@ class users
 
             echo '<tr>';
             echo '<td>' . $id . '</td>';
-            echo '<td class="text-left">' . $naam . '</td>';
+            echo '<td class="text-left"><a href="logged.php?page=edit_user&id=' . $id . '">' . $naam . '</a></td>';
             echo '<td class="text-left extra-info">' . $positie . '</td>';
-            echo '<td><a href="logged.php?page=edit_user&id=' . $id . '"> Bewerken </a></td>';
             echo '</tr>';
 
         }
@@ -259,7 +260,7 @@ class users
         return $datarow[0];
     }
 
-    function aantalWedstrijden($id)
+    public function aantalWedstrijden($id)
     {
 
         global $db;
