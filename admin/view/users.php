@@ -39,7 +39,6 @@
                 <th>id</th>
                 <th>Speler</th>
                 <th class="extra-info">Positie</th>
-                <th>Bewerken</th>
             </tr>
             </thead>
             <?php

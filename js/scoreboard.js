@@ -77,3 +77,9 @@ function goBack() {
      window.history.back();
  }
 
+$(document).ready(function() {
+    $("table").tablesorter({
+        sortList: [[12,1]]
+    });
+});
+

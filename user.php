@@ -4,6 +4,10 @@ $obj = new users();
 $data = $obj->getpoints($_GET[ 'id' ]);
 $games = $obj->aantalWedstrijden($_GET['id']);
 $goals = $obj->getGoals($_GET['id']);
+$totaal = $obj->getTotalPoints($_GET['id']);
+
+$gemiddeld = $totaal / $games;
+$gemiddeld = number_format($gemiddeld, 2, '.', '');
 
 include('./header.php');
 ?>
@@ -80,6 +84,10 @@ include('./header.php');
                 <tr>
                     <td>Aantal doelpunten</td>
                     <td><?php echo $goals ?></td>
+                </tr>
+                <tr>
+                    <td>Gemiddeld punten per wedstrijd</td>
+                    <td><?php echo $gemiddeld ?></td>
                 </tr>
             </table>
     </div>

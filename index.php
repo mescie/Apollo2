@@ -44,6 +44,9 @@
                     <th>
                         Totaal
                     </th>
+                    <th class="hidden">
+                        Gem. p/w
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -95,18 +98,12 @@
 <script type="text/javascript" src="js/jquery.countdown.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $("table").tablesorter({
-            sortList: [[12,1]]
-        });
-    });
 
     var arrayDates = [];
     var time = new Date();
 
-    arrayDates.push(new Date('November 21, 2015 13:00:00'));
-    arrayDates.push(new Date('November 28, 2015 15:00:00'));
-    arrayDates.push(new Date('December 5, 2015 14:30:00'));
+    arrayDates.push(new Date('January 30, 2016 13:30:00'));
+    arrayDates.push(new Date('February 13, 2016 13:30:00'));
 
     for(i = 0; i < arrayDates.length; i++){
         if(arrayDates[i] >= time) {

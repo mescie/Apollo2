@@ -1,6 +1,6 @@
 <?php
 $obj = new users();
-$data = $obj->getPointsByGame($_GET[ 'id' ], $_GET[ 'wid' ]);
+$data = $obj->getPoints($_GET[ 'id' ], $_GET[ 'wid' ]);
 $nextid = $obj->nextPlayer($_GET[ 'id' ]);
 $position = $obj->playerPosition($_GET[ 'id' ]);
 $positionString = implode("", $position);
