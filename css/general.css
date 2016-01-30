@@ -19,6 +19,23 @@ body {
     letter-spacing: 3px;
 }
 
+.user-stat {
+    background-color: #204D74;
+    height: 150px;
+    color: #FFFFFF;
+    padding: 5px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.user-stat span {
+    font-size: 45px;
+}
+
+.user-stat p {
+    font-size: 20px;
+}
+
 .clear {
     clear: both;
 }
@@ -45,6 +62,10 @@ a.addplayer {
 
 .pointer {
     cursor: pointer;
+}
+
+.row {
+    margin: 20px 0 20px 0;
 }
 
 .totalpoints {
@@ -92,6 +113,11 @@ table.tablesorter thead tr th.headerSortUp:after {
 }
 table.tablesorter thead tr th.headerSortDown:after {
     content: "\f0dd";
+}
+
+canvas{
+    width: 100% !important;
+    height: auto !important;
 }
 
 @media only screen and (max-device-width: 480px) {
