@@ -90,6 +90,42 @@ class users
         return $totaal;
     }
 
+    // returns array with total points per game
+    public function getTotalPointsPerGame($id)
+    {
+
+        global $db;
+
+        if (is_numeric($id)) {
+            $sql = "SELECT p.gespeeld +
+                    p.cleansheet +
+                    p.gescoord +
+                    p.assist +
+                    p.winst +
+                    p.gelijkspel +
+                    p.geel +
+                    p.rood +
+                    p.tegengoal +
+                    p.eigengoal +
+                    p.jasje AS total
+                    FROM 		sb_punten p
+                    INNER JOIN 	sb_users u ON p.uID = u.uID
+                    WHERE       u.uID = $id";
+
+            if (!$result = $db->query( $sql )) {
+                // COMMENT die is niet echt netjes, zie ook puntentelling.php
+                die( 'There was an error running the query [' . $db->error . ']' );
+            }
+
+            $results = array();
+            while ($row = $result->fetch_array()) {
+                $results[] = $row[0];
+            }
+        }
+
+        return $results;
+    }
+
     public function getNaam($id)
     {
         global $db;
