@@ -1,116 +1,139 @@
 <?php
-require('class.users.php');
+require( 'class.users.php' );
 $obj = new users();
-$data = $obj->getpoints($_GET[ 'id' ]);
-$games = $obj->aantalWedstrijden($_GET['id']);
-$goals = $obj->getGoals($_GET['id']);
-$totaal = $obj->getTotalPoints($_GET['id']);
-$pointsPerGame = $obj->getTotalPointsPerGame($_GET['id']);
-$js_array = json_encode($pointsPerGame);
+$data = $obj->getpoints( $_GET[ 'id' ] );
+$games = $obj->aantalWedstrijden( $_GET[ 'id' ] );
+$goals = $obj->getGoals( $_GET[ 'id' ] );
+$totaal = $obj->getTotalPoints( $_GET[ 'id' ] );
+$pointsPerGame = $obj->getTotalPointsPerGame( $_GET[ 'id' ] );
+$js_array = json_encode( $pointsPerGame );
 
 $gemiddeld = $totaal / $games;
-$gemiddeld = number_format($gemiddeld, 2, '.', '');
+$gemiddeld = number_format( $gemiddeld, 2, '.', '' );
 
-include('./header.php');
+include( './header.php' );
 ?>
 
 <div class="container">
-    <div class="col-md-6">
-
-        <h2><?php echo $data['naam'] ?> <small>Totaal punten</small></h2>
+    <div class="row">
+        <div class="col-md-12">
+            <h2><?php echo $data[ 'naam' ] ?></h2>
+        </div>
+        <div class="col-md-6">
             <table class="table table-striped table-bordered">
                 <tr>
                     <td>Gespeeld</td>
-                    <td><?php echo $data['gespeeld'] ?></td>
+                    <td><?php echo $data[ 'gespeeld' ] ?></td>
                 </tr>
                 <tr>
                     <td>Cleansheet</td>
-                    <td><?php echo $data['cleansheet'] ?></td>
+                    <td><?php echo $data[ 'cleansheet' ] ?></td>
                 </tr>
                 <tr>
                     <td>Gescoord</td>
-                    <td><?php echo $data['gescoord'] ?></td>
+                    <td><?php echo $data[ 'gescoord' ] ?></td>
                 </tr>
                 <tr>
                     <td>Assist</td>
-                    <td><?php echo $data['assist'] ?></td>
+                    <td><?php echo $data[ 'assist' ] ?></td>
                 </tr>
                 <tr>
                     <td>Winst</td>
-                    <td><?php echo $data['winst'] ?></td>
+                    <td><?php echo $data[ 'winst' ] ?></td>
                 </tr>
                 <tr>
                     <td>Gelijkspel</td>
-                    <td><?php echo $data['gelijkspel'] ?></td>
+                    <td><?php echo $data[ 'gelijkspel' ] ?></td>
                 </tr>
-                <tr>
-                    <td colspan="2"></td>
-                </tr>
+            </table>
+        </div>
+
+        <div class="col-md-6">
+            <table class="table table-striped table-bordered">
                 <tr>
                     <td>Geel</td>
-                    <td><?php echo $data['geel'] ?></td>
+                    <td><?php echo $data[ 'geel' ] ?></td>
                 </tr>
                 <tr>
                     <td>Rood</td>
-                    <td><?php echo $data['rood'] ?></td>
+                    <td><?php echo $data[ 'rood' ] ?></td>
                 </tr>
                 <tr>
                     <td>Tegengoal</td>
-                    <td><?php echo $data['tegengoal'] ?></td>
+                    <td><?php echo $data[ 'tegengoal' ] ?></td>
                 </tr>
                 <tr>
                     <td>Eigengoal</td>
-                    <td><?php echo $data['eigengoal'] ?></td>
+                    <td><?php echo $data[ 'eigengoal' ] ?></td>
                 </tr>
                 <tr>
                     <td>Jasje</td>
-                    <td><?php echo $data['jasje'] ?></td>
+                    <td><?php echo $data[ 'jasje' ] ?></td>
                 </tr>
             </table>
-
-        <button class="btn btn-primary" onclick="goBack()">
-            <span class="glyphicon glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Vorige pagina
-        </button>
-
+        </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="row">
+        <div class="col-md-4 col-xs-4">
+            <div class="col-md-12 user-stat">
+                <p>Wedstrijden</p>
 
-        <h2>Statistieken</h2>
+                <span><?php echo $games ?></span>
+            </div>
+        </div>
 
-            <table class="table table-striped table-bordered">
-                <tr>
-                    <td>Aantal wedstrijden gespeeld</td>
-                    <td><?php echo $games ?></td>
-                </tr>
-                <tr>
-                    <td>Aantal doelpunten</td>
-                    <td><?php echo $goals ?></td>
-                </tr>
-                <tr>
-                    <td>Gemiddeld punten per wedstrijd</td>
-                    <td><?php echo $gemiddeld ?></td>
-                </tr>
-            </table>
+        <div class="col-md-4 col-xs-4">
+            <div class="col-md-12 user-stat">
+                <p>Doelpunten</p>
+
+                <span><?php echo $goals ?></span>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xs-4">
+            <div class="col-md-12 user-stat">
+                <p>Gemiddeld punten</p>
+
+                <span><?php echo $gemiddeld ?></span>
+            </div>
+        </div>
     </div>
 
-    <div class="col-md-6">
-        <canvas id="myLineChart"></canvas>
+    <div class="row">
+
+        <div class="col-md-8 col-xs-12">
+            <canvas id="myLineChart"></canvas>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-primary" onclick="goBack()">
+                <span class="glyphicon glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Vorige
+                pagina
+            </button>
+        </div>
     </div>
 
 </div>
 
 <script type="text/javascript">
 
+    var options = {
+        maintainAspectRatio: false,
+        responsive:          true
+    };
+
     var data = {
-        labels : <?php echo $js_array?>,
-        datasets : [
+        labels: <?php echo $js_array?>,
+        datasets: [
             {
-                fillColor : "rgba(172,194,132,0.4)",
-                strokeColor : "#ACC26D",
-                pointColor : "#fff",
-                pointStrokeColor : "#9DB86D",
-                data : <?php echo $js_array?>
+                fillColor:        "rgba(172,194,132,0.4)",
+                strokeColor:      "#ACC26D",
+                pointColor:       "#fff",
+                pointStrokeColor: "#9DB86D",
+                data: <?php echo $js_array?>
             }
         ]
     };
@@ -119,9 +142,10 @@ include('./header.php');
     var myLineChart = new Chart(ctx).Line(data);
 </script>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scoreboard.js"></script>
 </body>
 </html>
