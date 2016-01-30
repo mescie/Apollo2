@@ -5,6 +5,8 @@ $data = $obj->getpoints($_GET[ 'id' ]);
 $games = $obj->aantalWedstrijden($_GET['id']);
 $goals = $obj->getGoals($_GET['id']);
 $totaal = $obj->getTotalPoints($_GET['id']);
+$pointsPerGame = $obj->getTotalPointsPerGame($_GET['id']);
+$js_array = json_encode($pointsPerGame);
 
 $gemiddeld = $totaal / $games;
 $gemiddeld = number_format($gemiddeld, 2, '.', '');
@@ -92,15 +94,34 @@ include('./header.php');
             </table>
     </div>
 
+    <div class="col-md-6">
+        <canvas id="myLineChart"></canvas>
+    </div>
+
 </div>
+
+<script type="text/javascript">
+
+    var data = {
+        labels : <?php echo $js_array?>,
+        datasets : [
+            {
+                fillColor : "rgba(172,194,132,0.4)",
+                strokeColor : "#ACC26D",
+                pointColor : "#fff",
+                pointStrokeColor : "#9DB86D",
+                data : <?php echo $js_array?>
+            }
+        ]
+    };
+
+    var ctx = document.getElementById("myLineChart").getContext("2d");
+    var myLineChart = new Chart(ctx).Line(data);
+</script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/scoreboard.js"></script>
-
-    <script src="js/light-table-sorter.min.js"></script>
-    <script> LightTableSorter.init() </script>
 </body>
 </html>
