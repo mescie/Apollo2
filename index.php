@@ -41,7 +41,7 @@
                     <th class="extra-info pointer">
                         Jasje
                     </th>
-                    <th>
+                    <th class="pointer">
                         Totaal
                     </th>
                     <th class="hidden">

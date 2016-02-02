@@ -26,6 +26,7 @@ body {
     padding: 5px;
     text-align: center;
     padding-top: 20px;
+    margin-bottom: 20px;
 }
 
 .user-stat span {
@@ -146,6 +147,20 @@ canvas{
         margin-top: 0;
         font-size: 18px;
         text-align: center;
+    }
+
+    .user-stat span {
+        font-size: 26px;
+    }
+
+    .user-stat p {
+        font-size: 20px;
+    }
+
+    .user-stat {
+        height: 100px;
+        padding-top: 10px;
+        margin: 20px 0 20px 0;
     }
 
 }

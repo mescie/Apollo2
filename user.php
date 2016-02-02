@@ -7,6 +7,14 @@ $goals = $obj->getGoals( $_GET[ 'id' ] );
 $totaal = $obj->getTotalPoints( $_GET[ 'id' ] );
 $pointsPerGame = $obj->getTotalPointsPerGame( $_GET[ 'id' ] );
 $js_array = json_encode( $pointsPerGame );
+$xasCount = count($pointsPerGame);
+
+for($i=1;$i<$xasCount;$i++)
+{
+    $xas[] = array($i);
+}
+
+$xas = json_encode($xas);
 
 $gemiddeld = $totaal / $games;
 $gemiddeld = number_format( $gemiddeld, 2, '.', '' );
@@ -75,7 +83,7 @@ include( './header.php' );
     </div>
 
     <div class="row">
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-4">
             <div class="col-md-12 user-stat">
                 <p>Wedstrijden</p>
 
@@ -83,7 +91,7 @@ include( './header.php' );
             </div>
         </div>
 
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-4">
             <div class="col-md-12 user-stat">
                 <p>Doelpunten</p>
 
@@ -91,7 +99,7 @@ include( './header.php' );
             </div>
         </div>
 
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-4">
             <div class="col-md-12 user-stat">
                 <p>Gemiddeld punten</p>
 
@@ -126,13 +134,13 @@ include( './header.php' );
     };
 
     var data = {
-        labels: <?php echo $js_array?>,
+        labels: <?php echo $xas ?>,
         datasets: [
             {
-                fillColor:        "rgba(172,194,132,0.4)",
-                strokeColor:      "#ACC26D",
+                fillColor:        "rgba(32,77,116,0.4)",
+                strokeColor:      "#204D74",
                 pointColor:       "#fff",
-                pointStrokeColor: "#9DB86D",
+                pointStrokeColor: "#204D74",
                 data: <?php echo $js_array?>
             }
         ]

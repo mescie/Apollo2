@@ -45,6 +45,44 @@ class users
         return $data;
     }
 
+    public function getPointsByGame($id, $wid)
+    {
+        global $db;
+
+        if(is_numeric($id) && (is_numeric($wid))) {
+            $sql = "SELECT *
+                FROM sb_punten
+                WHERE uID = $id
+                AND wID = $wid";
+
+            if (!$result = $db->query( $sql )) {
+                // COMMENT die is niet echt netjes, zie ook puntentelling.php
+                die( 'There was an error running the query [' . $db->error . ']' );
+            }
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $data = $row;
+                }
+            } else {
+                $data = [
+                    "gespeeld" => 0,
+                    "cleansheet" => 0,
+                    "gescoord" => 0,
+                    "assist" => 0,
+                    "winst" => 0,
+                    "gelijkspel" => 0,
+                    "geel" => 0,
+                    "rood" => 0,
+                    "tegengoal" => 0,
+                    "eigengoal" => 0,
+                    "jasje" => 0
+                ];
+            }
+        }
+        return $data;
+    }
+
     public function getTotalPoints($id)
     {
 
