@@ -9,8 +9,9 @@ $pointsPerGame = $obj->getTotalPointsPerGame( $_GET[ 'id' ] );
 $js_array = json_encode( $pointsPerGame );
 $xasCount = count($pointsPerGame);
 
-for($i=1;$i<$xasCount;$i++)
+for($i=0;$i<$xasCount;)
 {
+    $i++;
     $xas[] = array($i);
 }
 
