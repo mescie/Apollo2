@@ -1,6 +1,5 @@
 <div class="container">
     <div class="col-md-12">
-        <h1>Admin</h1>
         <h2>Add user</h2>
 
         <form action="../admin/add_wedstrijd.php" method="post">
