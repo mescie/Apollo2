@@ -14,6 +14,13 @@ if (isset($_POST['save']) && !empty($_POST['naam'])) {
         die( 'There was an error running the query [' . $db->error . ']' );
     }
 
+    $sql = "INSERT INTO sb_topscoorders (doelpunten)
+            VALUES (0)";
+
+    if (!$result = $db->query( $sql )) {
+        die( 'There was an error running the query [' . $db->error . ']' );
+    }
+
     header("Location: logged.php");
     exit();
 } else {
